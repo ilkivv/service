@@ -8,9 +8,9 @@ import java.util.Collection;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long device_id;
+
     private Short type_order_id;
     private Float orient_price;
     private Float prepayment;
@@ -33,14 +33,6 @@ public class Order {
 
     public void setType_order_id(Short type_order) {
         this.type_order_id = type_order_id;
-    }
-
-    public Long getDevice_id() {
-        return device_id;
-    }
-
-    public void setDevice_id(Long device_id) {
-        this.device_id = device_id;
     }
 
     public Float getOrient_price() {

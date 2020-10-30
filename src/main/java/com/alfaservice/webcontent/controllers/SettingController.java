@@ -11,14 +11,13 @@ import java.util.Map;
 @Controller
 public class SettingController {
 
-    @PostMapping(name = "/settings")
+    @PostMapping(path = "/settings")
     public String addNewSetting(@RequestAttribute Map<Setting, Long> model){
         return "settings";
     }
 
-    @GetMapping(name = "/settings")
-    public String showSettings(Map<Setting, Long> model){
-
-        return "settings";
+    @GetMapping(path = "/settings")
+    public String showSettings(){
+        return "pages/settings";
     }
 }

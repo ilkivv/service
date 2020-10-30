@@ -2,7 +2,7 @@ package com.alfaservice.webcontent.controllers;
 
 import com.alfaservice.webcontent.entities.Order;
 import com.alfaservice.webcontent.interfaces.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,20 +10,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Map;
 
 @Controller
-public class OrderController extends HomeController{
+public class OrderController extends IndexController {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-    @GetMapping(path = "/orders ")
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    @GetMapping(path = "/orders")
     public String showOrders(Map<String, Object> model){
         Iterable<Order> orders = orderRepository.findAll();
         model.put("orders", orders);
-        return "orders";
+        return "pages/order/orders";
     }
 
     @GetMapping(path = "/order/add")
     public String showOrderForm(Map<String, Object> model){
+
         return "pages/order/add";
     }
 
