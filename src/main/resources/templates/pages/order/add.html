@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <!--begin::Head-->
 <head><base href="">
     <meta charset="utf-8"/>
@@ -1459,13 +1459,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="type_order_id_select">Тип заказа</label>
-                                                <select class="form-control" name="type_order_id" id="type_order_id_select">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <label for="type_device_select">Тип заказа</label>
+                                                <select class="form-control" name="type_order_id" id="type_device_select">
+                                                    <th:block th:each="type : ${type_devices}">
+                                                        <option th:value="${type.id}" th:text="${type.name}"></option>
+                                                    </th:block>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -1474,24 +1472,21 @@
                                                 <span class="form-text text-muted">We'll never share your email with anyone else.</span>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-3 col-form-label">With Icon</label>
+                                                <label class="col-3 col-form-label">Срочный заказ</label>
                                                 <div class="col-3">
 			                                        <span class="switch switch-icon">
 				                                        <label>
 					                                        <input type="checkbox" checked="checked" name="urgency"/>
-					                                        <span></span>
 				                                        </label>
 			                                        </span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleSelect1">Устройство</label>
-                                                <select class="form-control" name="device_id" id="exampleSelect1">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <label for="device_select">Устройство</label>
+                                                <select class="form-control" name="device_id" id="device_select">
+                                                    <th:block th:each="device : ${devices}">
+                                                        <option th:value="${device.id}" th:text="${device.name}"></option>
+                                                    </th:block>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">

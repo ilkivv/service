@@ -10,13 +10,20 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
     @ManyToMany(mappedBy = "devices")
     private Collection<Order> orders;
 
     public Device(){}
+
+    public Device(String name){
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -33,4 +40,5 @@ public class Device {
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
     }
+
 }

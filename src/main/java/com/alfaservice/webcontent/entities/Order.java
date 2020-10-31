@@ -10,7 +10,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Short type_order_id;
     private Float orient_price;
     private Float prepayment;
