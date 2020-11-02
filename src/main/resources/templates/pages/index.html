@@ -1,5 +1,11 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout.html}"
+>
+
  <!--begin::Container-->
-    <div xmlns:th="http://www.thymeleaf.org" th:fragment="content" class=" container ">
+    <div layout:fragment="content" class=" container ">
         <!--begin::Dashboard-->
         <!--begin::Row-->
         <div class="row">
@@ -169,7 +175,7 @@
                         </div>
                         <!--end::Tiles Widget 2-->
                         <!--begin::Tiles Widget 3-->
-                        <div class="card card-custom bgi-no-repeat bgi-no-repeat bgi-size-cover gutter-b" style="height: 130px; background-image: url(assets/media/bg/bg-9.jpg)">
+                        <div class="card card-custom bgi-no-repeat bgi-no-repeat bgi-size-cover gutter-b" style="height: 130px; background-image: url(media/bg/bg-9.jpg)">
                             <!--begin::Body-->
                             <div class="card-body d-flex flex-column">
                                 <!--begin::Title-->
@@ -222,7 +228,7 @@
                     </div>
                 </div>
                 <!--begin::Mixed Widget 20-->
-                <div class="card card-custom bgi-no-repeat gutter-b" style="height: 175px; background-color: #4AB58E; background-position: calc(100% + 1rem) bottom; background-size: 25% auto; background-image: url(assets/media/svg/humans/custom-1.svg)">
+                <div class="card card-custom bgi-no-repeat gutter-b" style="height: 175px; background-color: #4AB58E; background-position: calc(100% + 1rem) bottom; background-size: 25% auto; background-image: url(media/svg/humans/custom-1.svg)">
                     <!--begin::Body-->
                     <div class="card-body d-flex align-items-center">
                         <div class="py-2">
@@ -240,7 +246,7 @@
             </div>
             <div class="col-xl-3">
                 <!--begin::Tiles Widget 7-->
-                <div class="card card-custom bgi-no-repeat gutter-b card-stretch" style="background-color: #1B283F; background-position: 0 calc(100% + 0.5rem); background-size: 100% auto; background-image: url(assets/media/svg/patterns/rhone.svg)">
+                <div class="card card-custom bgi-no-repeat gutter-b card-stretch" style="background-color: #1B283F; background-position: 0 calc(100% + 0.5rem); background-size: 100% auto; background-image: url(media/svg/patterns/rhone.svg)">
                     <!--begin::Body-->
                     <div class="card-body">
                         <div class="p-4">
@@ -443,7 +449,7 @@
                                 <div class="symbol-label">
                                     <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt=""/>
                                 </div>
-                            </a href="#">
+                            </a>
                             <!--end::Pic-->
 
                             <!--begin::Pic-->
@@ -1351,3 +1357,4 @@
         <!--end::Dashboard-->
     </div>
     <!--end::Container-->
+</html>

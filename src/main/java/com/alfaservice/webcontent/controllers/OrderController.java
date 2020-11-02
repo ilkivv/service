@@ -19,7 +19,11 @@ public class OrderController extends IndexController {
     private final DeviceRepository deviceRepository;
     private final TypeDeviceRepository typeDeviceRepository;
 
-    private static final String ADDR_PAGES_ORDER = "pages/order/";
+    private static final String ORDERS_PAGE = "pages/order/orders";
+    private static final String ORDER_ADD_PAGE = "pages/order/add";
+
+    private static final String ORDERS_PATH = "/orders";
+    private static final String ORDER_ADD_PATH = "/order/add";
 
     public OrderController(OrderRepository orderRepository, DeviceRepository deviceRepository, TypeDeviceRepository typeDeviceRepository) {
         this.orderRepository = orderRepository;
@@ -27,28 +31,28 @@ public class OrderController extends IndexController {
         this.typeDeviceRepository = typeDeviceRepository;
     }
 
-    @GetMapping(path = "/orders")
+    @GetMapping(path = ORDERS_PATH)
     public String showOrders(Map<String, Object> model){
         Iterable<Order> orders = orderRepository.findAll();
         model.put("orders", orders);
-        return ADDR_PAGES_ORDER + "orders";
+        return ORDERS_PAGE;
     }
 
-    @GetMapping(path = "/order/add")
+    @GetMapping(path = ORDER_ADD_PATH)
     public String showOrderForm(Map<String, Object> model){
         Iterable<Device> devices = deviceRepository.findAll();
         Iterable<TypeDevice> type_devices = typeDeviceRepository.findAll();
         model.put("devices", devices);
         model.put("type_devices", type_devices);
-        return ADDR_PAGES_ORDER + "add";
+        return ORDER_ADD_PAGE;
     }
 
-    @PostMapping(path = "/order/add")
+    @PostMapping(path = ORDER_ADD_PATH)
     public String addNewOrder(Map<String, Object> model){
         Order order = new Order();
         order.setNotes_order("всякая параша");
         orderRepository.save(order);
-        return ADDR_PAGES_ORDER + "add";
+        return ORDER_ADD_PAGE;
     }
 
 }
