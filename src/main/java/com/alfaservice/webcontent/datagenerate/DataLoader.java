@@ -14,13 +14,26 @@ public class DataLoader implements ApplicationRunner {
     private final TypeOrderRepository typeOrderRepository;
     private final TypeProductRepository typeProductRepository;
     private final BrandRepository brandRepository;
+    private final AppearanceRepository appearanceRepository;
+    private final DefectRepository defectRepository;
+    private final EquipmentRepository equipmentRepository;
 
     @Autowired
-    public DataLoader(ModelProductRepository modelProductRepository, TypeOrderRepository typeOrderRepository, TypeProductRepository typeProductRepository, BrandRepository brandRepository) {
+    public DataLoader(
+            ModelProductRepository modelProductRepository,
+            TypeOrderRepository typeOrderRepository,
+            TypeProductRepository typeProductRepository,
+            BrandRepository brandRepository,
+            AppearanceRepository appearanceRepository,
+            DefectRepository defectRepository,
+            EquipmentRepository equipmentRepository) {
         this.modelProductRepository = modelProductRepository;
         this.typeOrderRepository = typeOrderRepository;
         this.typeProductRepository = typeProductRepository;
         this.brandRepository = brandRepository;
+        this.appearanceRepository = appearanceRepository;
+        this.defectRepository = defectRepository;
+        this.equipmentRepository = equipmentRepository;
     }
 
     @Override
@@ -45,5 +58,22 @@ public class DataLoader implements ApplicationRunner {
         typeProductRepository.save(new TypeProduct("Ноутбук"));
         typeProductRepository.save(new TypeProduct("Компьютер"));
         typeProductRepository.save(new TypeProduct("Телевизор"));
+
+        appearanceRepository.save(new Appearance("потертости"));
+        appearanceRepository.save(new Appearance("царапины"));
+        appearanceRepository.save(new Appearance("трещины на экране"));
+        appearanceRepository.save(new Appearance("нет крышки"));
+        appearanceRepository.save(new Appearance("трещины на рамке"));
+
+        defectRepository.save(new Defect("Разбит дисплей"));
+        defectRepository.save(new Defect("Разбит тачскрин"));
+        defectRepository.save(new Defect("Меня не слышно"));
+        defectRepository.save(new Defect("Я не слышу"));
+        defectRepository.save(new Defect("Не заряжается"));
+
+        equipmentRepository.save(new Equipment("Аппарат"));
+        equipmentRepository.save(new Equipment("Блок питания"));
+        equipmentRepository.save(new Equipment("Коробка"));
+        equipmentRepository.save(new Equipment("Ценник"));
     }
 }

@@ -1,5 +1,11 @@
-<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="scripts">
-    <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout.html}"
+>
+<th:block th:fragment="scripts">
+
+
+    <script>var HOST_URL = "https://http://localhost:8080";</script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
         var KTAppSettings = {
@@ -64,16 +70,16 @@
     <!--end::Global Config-->
 
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script th:src="@{plugins/global/plugins.bundle.js?v=7.0.6}"></script>
-    <script th:src="@{plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6}"></script>
-    <script th:src="@{js/scripts.bundle.js?v=7.0.6}"></script>
+    <script th:src="@{../plugins/global/plugins.bundle.js?v=7.0.6}"></script>
+    <script th:src="@{../plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6}"></script>
+    <script th:src="@{../js/scripts.bundle.js?v=7.0.6}"></script>
     <!--end::Global Theme Bundle-->
 
     <!--begin::Page Vendors(used by this page)-->
-    <script th:src="@{plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6}"></script>
+    <script th:src="@{../plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6}"></script>
     <!--end::Page Vendors-->
 
     <!--begin::Page Scripts(used by this page)-->
-    <script th:src="@{js/pages/widgets.js?v=7.0.6}"></script>
+    <script th:src="@{../js/pages/widgets.js?v=7.0.6}"></script>
     <!--end::Page Scripts-->
 </th:block>

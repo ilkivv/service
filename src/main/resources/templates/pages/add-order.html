@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layouts/layout.html}"
 >
+
 <body>
 <!--begin::Container-->
 <div layout:fragment="content" class=" container ">
@@ -61,14 +62,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="model_select">Модель</label>
-                            <select class="form-control" name="device_id" id="model_select">
-                                <th:block th:each="product : ${type_products}">
-                                    <option th:value="${product.id}" th:text="${product.name}"></option>
-                                </th:block>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="device_select">Модель устройства</label>
                             <select class="form-control" name="device_id" id="device_select">
                                 <th:block th:each="model : ${modelProducts}">
@@ -76,11 +69,38 @@
                                 </th:block>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Ориентировочная стоимость</label>
-                            <input type="text" name="orient_price" class="form-control"  placeholder="1000"/>
-                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                        <div class="form-group row">
+                            <label for="defects_select" class="col-form-label col-lg-3 col-sm-12">Неисправности</label>
+                            <div class="col-lg-6 col-md-9 col-sm-12">
+                                <select class="form-control selectpicker" name="defectы" id="defects_select" multiple data-selected-text-format="count > 3" rows="3">
+                                    <th:block th:each="defect : ${defects}">
+                                        <option th:value="${defect.id}" th:title="${defect.name}" th:text="${defect.name}"></option>
+                                    </th:block>
+
+                                </select>
+                            </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="appearances_select" class="col-form-label col-lg-3 col-sm-12">Внешний вид</label>
+                            <div class="col-lg-6 col-md-9 col-sm-12">
+                                <select class="form-control selectpicker" name="appearances" id="appearances_select" multiple data-selected-text-format="count > 3">
+                                    <th:block th:each="appearance : ${appearances}">
+                                        <option th:value="${appearance.id}" th:title="${appearance.name}" th:text="${appearance.name}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="equipment_select" class="col-form-label col-lg-3 col-sm-12">Комплектация</label>
+                            <div class="col-lg-6 col-md-9 col-sm-12">
+                                <select class="form-control selectpicker" name="appearances" id="equipment_select" multiple data-selected-text-format="count > 3">
+                                    <th:block th:each="equipment : ${equipments}">
+                                        <option th:value="${equipment.id}" th:title="${equipment.name}" th:text="${equipment.name}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <h2>Дополнительная информация</h2>
                         <div class="form-group row">
                             <label class="col-3 col-form-label">Срочный заказ</label>
                             <div class="col-3">
@@ -92,10 +112,49 @@
                                  </span>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label>Ориентировочная стоимость</label>
+                            <input type="text" name="orient_price" class="form-control"  placeholder="1000"/>
+                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3 col-sm-12">Дата готовности</label>
+                            <div class="col-lg-4 col-md-9 col-sm-12">
+                                <div class="input-group date" >
+                                    <input type="text" class="form-control" readonly value="05/20/2017" id="kt_datepicker_3"/>
+                                    <div class="input-group-append">
+							<span class="input-group-text">
+								<i class="la la-calendar"></i>
+							</span>
+                                    </div>
+                                </div>
+                                <span class="form-text text-muted">Enable clear and today helper buttons</span>
+                            </div>
+                        </div>
                         <div class="form-group mb-1">
                             <label for="orient_price_textarea">Заметки</label>
                             <textarea class="form-control" name="orient_price" id="orient_price_textarea" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Предоплата</label>
+                            <input type="text" name="prepayment" class="form-control" placeholder="0"/>
+                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="type_manager_select">Менеджер (приемщик)</label>
+                            <select class="form-control" name="type_order_id" id="type_manager_select">
+                                <th:block th:each="type : ${type_orders}">
+                                    <option th:value="${type.id}" th:text="${type.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="type_worker_select">Ответственный сотрудник</label>
+                            <select class="form-control" name="type_order_id" id="type_worker_select">
+                                <th:block th:each="type : ${type_orders}">
+                                    <option th:value="${type.id}" th:text="${type.name}"></option>
+                                </th:block>
+                            </select>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -113,6 +172,74 @@
     <!--end::Dashboard-->
 </div>
 <!--end::Container-->
+<th:block layout:fragment="custom_scripts">
+    <script type="application/javascript">
+        // Class definition
+
+        var KTBootstrapSelect = function () {
+
+            // Private functions
+            var demos = function () {
+                // minimum setup
+                $('.kt-selectpicker').selectpicker();
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    demos();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTBootstrapSelect.init();
+        });
+    </script>
+    <script type="application/javascript">
+        // Class definition
+
+        var KTBootstrapDatepicker = function () {
+
+            var arrows;
+            if (KTUtil.isRTL()) {
+                arrows = {
+                    leftArrow: '<i class="la la-angle-right"></i>',
+                    rightArrow: '<i class="la la-angle-left"></i>'
+                }
+            } else {
+                arrows = {
+                    leftArrow: '<i class="la la-angle-left"></i>',
+                    rightArrow: '<i class="la la-angle-right"></i>'
+                }
+            }
+
+            // Private functions
+            var demos = function () {
+                // enable clear button
+                $('#kt_datepicker_3, #kt_datepicker_3_validate').datepicker({
+                    rtl: KTUtil.isRTL(),
+                    todayBtn: "linked",
+                    clearBtn: true,
+                    todayHighlight: true,
+                    templates: arrows
+                });
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    demos();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTBootstrapDatepicker.init();
+        });
+    </script>
+
+</th:block>
 </body>
 </html>
 
