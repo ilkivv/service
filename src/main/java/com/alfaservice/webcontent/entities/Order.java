@@ -15,14 +15,15 @@ public class Order {
     private Float prepayment;
     private Boolean urgency;
     private String notes_order;
+    private String serial_number;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "orders_devices",
+            name = "model_product_devices",
             joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "device_id")
+            inverseJoinColumns = @JoinColumn(name = "model_product_id")
     )
-    private Collection<Device> devices;
+    private Collection<ModelProduct> modelProducts;
 
     public Order(){}
 
@@ -66,11 +67,19 @@ public class Order {
         this.notes_order = notes_order;
     }
 
-    public Collection<Device> getDevices() {
-        return devices;
+    public Collection<ModelProduct> getModelProducts() {
+        return modelProducts;
     }
 
-    public void setDevices(Collection<Device> devices) {
-        this.devices = devices;
+    public void setModelProducts(Collection<ModelProduct> devices) {
+        this.modelProducts = modelProducts;
+    }
+
+    public String getSerial_number() {
+        return serial_number;
+    }
+
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
 }

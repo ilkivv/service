@@ -3,17 +3,17 @@ package com.alfaservice.webcontent.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "type_devices")
-public class TypeDevice {
+@Table(name = "type_orders")
+public class TypeOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public TypeDevice(){}
+    public TypeOrder(){}
 
-    public TypeDevice(String name){
+    public TypeOrder(String name){
         this.name = name;
     }
 

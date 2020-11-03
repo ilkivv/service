@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout.html}"
+>
+<body>
+<!--begin::Container-->
+<div layout:fragment="content" class=" container ">
+    <!--begin::Dashboard-->
+    <!--begin::Row-->
+    <div class="row">
+        <div class="col-xs-2 col-lg-2"></div>
+        <div class="col-xs-8 col-lg-8">
+            <!--begin::Form base controls 1-->
+            <div class="card card-custom">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Создание заказа
+                    </h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                            <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+                        </div>
+                    </div>
+                </div>
+                <!--begin::Form-->
+                <form>
+                    <div class="card-body">
+                        <div class="form-group mb-8">
+                            <div class="alert alert-custom alert-default" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                                <div class="alert-text">
+                                    The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type_order_select">Тип заказа</label>
+                            <select class="form-control" name="type_order_id" id="type_order_select">
+                                <th:block th:each="type : ${type_orders}">
+                                    <option th:value="${type.id}" th:text="${type.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <h2>Устройство</h2>
+                        <div class="form-group">
+                            <label for="type_device_select">Тип устройства</label>
+                            <select class="form-control" name="type_order_id" id="type_device_select">
+                                <th:block th:each="type : ${type_products}">
+                                    <option th:value="${type.id}" th:text="${type.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand_select">Бренд</label>
+                            <select class="form-control" name="device_id" id="brand_select">
+                                <th:block th:each="brand : ${brands}">
+                                    <option th:value="${brand.id}" th:text="${brand.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="model_select">Модель</label>
+                            <select class="form-control" name="device_id" id="model_select">
+                                <th:block th:each="product : ${type_products}">
+                                    <option th:value="${product.id}" th:text="${product.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="device_select">Модель устройства</label>
+                            <select class="form-control" name="device_id" id="device_select">
+                                <th:block th:each="model : ${modelProducts}">
+                                    <option th:value="${model.id}" th:text="${model.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ориентировочная стоимость</label>
+                            <input type="text" name="orient_price" class="form-control"  placeholder="1000"/>
+                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 col-form-label">Срочный заказ</label>
+                            <div class="col-3">
+			                     <span class="switch switch-icon">
+                                     <label>
+                                         <input type="checkbox" checked="checked" name="urgency"/>
+                                         <span></span>
+                                     </label>
+                                 </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-1">
+                            <label for="orient_price_textarea">Заметки</label>
+                            <textarea class="form-control" name="orient_price" id="orient_price_textarea" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="reset" class="btn btn-primary mr-2">Создать</button>
+                        <button type="reset" class="btn btn-secondary">Отменить</button>
+                    </div>
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Form base controls 1-->
+        </div>
+        <div class="col-xs-2 col-lg-2"></div>
+    </div>
+    <!--end::Row-->
+    <!--end::Dashboard-->
+</div>
+<!--end::Container-->
+</body>
+</html>
+

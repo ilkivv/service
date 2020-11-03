@@ -4,20 +4,20 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "devices")
-public class Device {
+@Table(name = "model_products")
+public class ModelProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "devices")
+    @ManyToMany(mappedBy = "modelProducts")
     private Collection<Order> orders;
 
-    public Device(){}
+    public ModelProduct(){}
 
-    public Device(String name){
+    public ModelProduct(String name){
         this.name = name;
     }
 

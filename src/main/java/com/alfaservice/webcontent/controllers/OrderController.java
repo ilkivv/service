@@ -1,11 +1,7 @@
 package com.alfaservice.webcontent.controllers;
 
-import com.alfaservice.webcontent.entities.Device;
-import com.alfaservice.webcontent.entities.Order;
-import com.alfaservice.webcontent.entities.TypeDevice;
-import com.alfaservice.webcontent.interfaces.DeviceRepository;
-import com.alfaservice.webcontent.interfaces.OrderRepository;
-import com.alfaservice.webcontent.interfaces.TypeDeviceRepository;
+import com.alfaservice.webcontent.entities.*;
+import com.alfaservice.webcontent.interfaces.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,35 +12,49 @@ import java.util.Map;
 public class OrderController extends IndexController {
 
     private final OrderRepository orderRepository;
-    private final DeviceRepository deviceRepository;
-    private final TypeDeviceRepository typeDeviceRepository;
+    private final ModelProductRepository modelProductRepository;
+    private final TypeOrderRepository typeOrderRepository;
+    private final TypeProductRepository typeProductRepository;
+    private final BrandRepository brandRepository;
 
-    private static final String ORDERS_PAGE = "pages/order/orders";
-    private static final String ORDER_ADD_PAGE = "pages/order/add";
+    private static final String ORDERS_TEMPLATE_PAGE = "pages/orders";
+    private static final String ADD_ORDER_TEMPLATE_PAGE = "pages/add-order";
 
     private static final String ORDERS_PATH = "/orders";
     private static final String ORDER_ADD_PATH = "/order/add";
 
-    public OrderController(OrderRepository orderRepository, DeviceRepository deviceRepository, TypeDeviceRepository typeDeviceRepository) {
+    public OrderController(
+            OrderRepository orderRepository,
+            ModelProductRepository modelProductRepository,
+            TypeProductRepository typeProductRepository,
+            TypeOrderRepository TypeOrderRepository,
+            BrandRepository brandRepository
+    ) {
         this.orderRepository = orderRepository;
-        this.deviceRepository = deviceRepository;
-        this.typeDeviceRepository = typeDeviceRepository;
+        this.modelProductRepository = modelProductRepository;
+        this.typeOrderRepository = TypeOrderRepository;
+        this.typeProductRepository = typeProductRepository;
+        this.brandRepository = brandRepository;
     }
 
     @GetMapping(path = ORDERS_PATH)
     public String showOrders(Map<String, Object> model){
         Iterable<Order> orders = orderRepository.findAll();
         model.put("orders", orders);
-        return ORDERS_PAGE;
+        return ORDERS_TEMPLATE_PAGE;
     }
 
     @GetMapping(path = ORDER_ADD_PATH)
     public String showOrderForm(Map<String, Object> model){
-        Iterable<Device> devices = deviceRepository.findAll();
-        Iterable<TypeDevice> type_devices = typeDeviceRepository.findAll();
-        model.put("devices", devices);
-        model.put("type_devices", type_devices);
-        return ORDER_ADD_PAGE;
+        Iterable<ModelProduct> modelProducts = modelProductRepository.findAll();
+        Iterable<TypeOrder> type_orders = typeOrderRepository.findAll();
+        Iterable<TypeProduct> type_products = typeProductRepository.findAll();
+        Iterable<Brand> brands = brandRepository.findAll();
+        model.put("modelProducts", modelProducts);
+        model.put("type_orders", type_orders);
+        model.put("type_products", type_products);
+        model.put("brands", brands);
+        return ADD_ORDER_TEMPLATE_PAGE;
     }
 
     @PostMapping(path = ORDER_ADD_PATH)
@@ -52,7 +62,7 @@ public class OrderController extends IndexController {
         Order order = new Order();
         order.setNotes_order("всякая параша");
         orderRepository.save(order);
-        return ORDER_ADD_PAGE;
+        return ADD_ORDER_TEMPLATE_PAGE;
     }
 
 }

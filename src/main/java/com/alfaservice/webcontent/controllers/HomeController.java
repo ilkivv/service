@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController extends IndexController{
 
+    public static final String INDEX_TEMPLATE_PAGE = "pages/index";
+
     @GetMapping
     public String homePage(){
-        return "pages/index";
+        return INDEX_TEMPLATE_PAGE;
     }
 
 }
