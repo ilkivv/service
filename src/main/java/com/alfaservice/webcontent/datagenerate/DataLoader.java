@@ -17,6 +17,8 @@ public class DataLoader implements ApplicationRunner {
     private final AppearanceRepository appearanceRepository;
     private final DefectRepository defectRepository;
     private final EquipmentRepository equipmentRepository;
+    private final RoleRepository roleRepository;
+    private final PermissionRepository permissionRepository;
 
     @Autowired
     public DataLoader(
@@ -26,7 +28,9 @@ public class DataLoader implements ApplicationRunner {
             BrandRepository brandRepository,
             AppearanceRepository appearanceRepository,
             DefectRepository defectRepository,
-            EquipmentRepository equipmentRepository) {
+            EquipmentRepository equipmentRepository, RoleRepository roleRepository,
+            PermissionRepository permissionRepository
+    ) {
         this.modelProductRepository = modelProductRepository;
         this.typeOrderRepository = typeOrderRepository;
         this.typeProductRepository = typeProductRepository;
@@ -34,6 +38,8 @@ public class DataLoader implements ApplicationRunner {
         this.appearanceRepository = appearanceRepository;
         this.defectRepository = defectRepository;
         this.equipmentRepository = equipmentRepository;
+        this.roleRepository = roleRepository;
+        this.permissionRepository = permissionRepository;
     }
 
     @Override
@@ -75,5 +81,13 @@ public class DataLoader implements ApplicationRunner {
         equipmentRepository.save(new Equipment("Блок питания"));
         equipmentRepository.save(new Equipment("Коробка"));
         equipmentRepository.save(new Equipment("Ценник"));
+
+        roleRepository.save(new Role("Пользователь", "user"));
+        roleRepository.save(new Role("Администратор", "administrator"));
+        roleRepository.save(new Role("Менеджер", "manager"));
+        roleRepository.save(new Role("Мастер", "master"));
+
+        permissionRepository.save(new Permission("Удалять", "delete"));
+        permissionRepository.save(new Permission("Изменять", "rename"));
     }
 }

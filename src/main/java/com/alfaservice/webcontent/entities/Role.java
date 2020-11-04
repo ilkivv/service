@@ -18,6 +18,7 @@ public class Role {
 
     public Role(String name){
         this.name = name;
+        this.signature = Transcriptor.translitRuToEn(name);
     }
 
     public Role(String name, String signature){

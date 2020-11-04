@@ -7,12 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String first_name;
     private String last_name;
     private String patronymic;
+    private String email;
     private String login;
     private String password;
     private String phone;
@@ -78,5 +80,13 @@ public class User {
 
     public void setIs_active(Boolean is_active) {
         this.is_active = is_active;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
